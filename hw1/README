@@ -1,0 +1,29 @@
+***Programming Homework 1***
+*檔名:
+	Program_1.c
+*編譯方式:
+	gcc -o Program_1 Program_1.c
+*使用方式:
+	執行後依序輸入n,k，然後輸入enter，得到Output.
+*程式架構:
+	function coeff 為 Recursive 架構，
+	由巴斯卡三角形上兩項和等於下項的規則編程。
+	而結束點在巴斯卡三角形的外圍皆為1。
+*如何設計功能:
+	先思考二項式係數是否有符合作業Recursive架構的定義，
+	找到巴斯卡三角形再撰寫。
+	
+***Programming Homework 2***
+*檔名:
+	Program_2.c
+*編譯方式:
+	gcc -o Program_2 Program_2.c
+*使用方式:
+	執行後輸入塔數，按enter後得到output次數。
+*程式架構:
+	function hanoi 為 Recursive 架構，
+	N個塔盤最少步數為(N-1)的步數乘以兩倍再加一，
+	結束點在N=1時步數為1。
+*如何設計功能:
+	先自己玩河內塔觀察塔盤移動步數規則，
+	發現每項與上一項有關聯，於是使用 Recursive 來解。

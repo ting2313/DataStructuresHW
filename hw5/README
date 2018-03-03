@@ -1,0 +1,48 @@
+***Programming Homework 5***
+***F74056108***
+*檔名:
+	hw5.c
+*編譯方式:
+	gcc -o hw5 hw5.c
+*使用方式:
+	./hw5
+	[輸入數字，並以','隔開]
+	[根據問題回答Y/N及數字，結束後按enter]
+*程式架構:
+  globle變數：
+	scale：在Tree的node數
+	deep：現在tree的深度
+  其他結構：
+    tree：
+		以node為單元的bst。
+		full_node：用於計算目前層數下，最多的node數目。
+	queue：
+		以queue為單元，並以queptr串聯在一起。
+		在這次作業中用於儲存node的位置以便print執行。
+		addq：增加queue
+		deleteq：減少queue
+		cleanq：清空queue
+  insert：O(deep)
+    新增node用。
+	用即將新增的key搜尋出該node在bst裡的最佳位置後再創建。
+	因為搜尋的while最多執行整棵樹的深度次，因此時間複雜度為O(deep)
+  delete：O(deep)
+    刪除node用。
+	先用search找到該刪除node的位置。
+	將該node的情況分為
+		(1)leaf：直接刪除。
+		(2)one child：將此node的child和parent連上後再刪掉。
+		(3)two child：
+			將此node的key用left subtree中的最大值替代後，
+			將left subtree的位置和該值遞迴回delete function。
+	最複雜的應為情況(3)，搜尋和找最大值的while合計應執行deep-1次，
+	算上遞迴後再跑的一次，總共deep次。
+  print：O(scale)
+	印出樹用。
+	利用graph中的bfs(課本P281~283)來印。
+	將now印完後，把他的child放入queue。
+	再pop出queue裡最早放入的node執行相同的動作。
+	由於while一定會執行scale次，故時間複雜度為O(scale)
+  main：
+    負責吃參數，並依序操控以上function與使用者互動。
+	

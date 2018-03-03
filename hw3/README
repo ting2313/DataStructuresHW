@@ -1,0 +1,31 @@
+***Programming Homework 3***
+***F74056108***
+*檔名:
+	hw3.c
+*編譯方式:
+	gcc -o hw3 hw3.c
+*使用方式:
+	執行後輸入迷宮橫軸長度n、縱軸長度m、迷宮，按enter，得到Output.
+*程式架構:
+	存入迷宮至char map[n][m]
+	並備份原始地圖至origin_map[n][m]
+	↓
+	push初始值
+	↓
+	重複執行(for迴圈)
+		把目前的位置標記成1
+		↓
+		藉由Function find來找周圍是否有可走路徑
+		[如果有]
+			push新路徑(把位置紀錄到Stack)
+		[如果沒有]
+			pop現在的路徑
+	直到以下兩種狀況：
+		(1)找到終點：Stack[top]為d → 繼續往下
+		(2)在Stack[0]且周圍沒有可走路徑 →印出No route.並結束程式
+	↓		
+	利用Stack在origin_map中把位置標記成'*'
+	↓
+	印出origin_map(走過的地圖)和top+1(步數)
+	↓
+	結束程式

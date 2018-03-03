@@ -1,0 +1,52 @@
+***Programming Homework 6***
+***F74056108***
+[第一題]
+*檔名:
+	hw6.c
+*編譯方式:
+	gcc -o hw6 hw6.c
+*使用方式:
+	./hw6
+*程式架構:
+	parent[MAX]:
+		若該node為root，儲存高度的負數。
+		其餘皆儲存parent
+	heightUnion(int i,int j):
+		比較i,j兩個root的高度：
+			if (i比較矮) 
+				i的parent改成j;
+			else (j比較矮)
+				j的parent改成i;
+			else if (兩者一樣大)
+				j的parent改成i;
+				i的高度比原本多1;
+	main()
+		先初始化parent，接著照input呼叫heightUnion。
+		接著印出結果。
+*******************************
+[第二題]
+[Situation 1]
+	由課本及上題可知，此範例使用兩種Union的結果會一樣。
+	故使用collapingFind的結果也會一樣。
+[Situation 2]
+	實驗設計：
+		由tree組合：
+		(1)每個node只有一個child(或沒有)
+		(2)只有2level，但總node數比(1)多1
+	結果：
+		若使用height rule，則會由(1)的root為結果的root，
+		結果會使原先在(1)的level 2的部分在collaping的過程裡，深度(level)都多1。
+		<↑例圖:https://goo.gl/vmvTpG>
+		反之若用weighted rule，則由(2)的root為結果的root。
+		僅有(1)一條分支會多level 1。
+		<↑例圖:https://goo.gl/aG2Pfu>
+		
+		由於collapingFind主要希望在前幾次把樹打散，
+		使得後面幾次的Find速度加快。
+		在此狀況下使用weighted rule後，只需collaping一次就可以確保剩下的都不用collaping。
+		故weighted rule較為適合。
+	推廣：
+		在此實驗可發現，兩種方法的差異主要反映在寬且重+窄且長的相加：
+		weighted rule的特性使得寬且重的tree中各node的階層不受影響，
+		由於collapingFind適合使用在少重量集中在單一分支的情況下，
+		故weighted rule較為適合。

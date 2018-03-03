@@ -1,0 +1,41 @@
+***Programming Homework 9***
+***F74056108***
+[第一題]
+*檔名:
+	hw9.c
+*編譯方式:
+	gcc -o hw9 hw9.c
+*使用方式:
+	./hw9
+	[total activities number]\n
+	[activities number] [start vertex] [end vertex] [activity require]\n
+	(依序輸入，以此類推)
+*程式架構:
+	變數：
+		int MAX_A,MAX_E:
+			分別記錄Activity和event的數量。
+		activity all_activity[MAX_A]:
+			用來記錄activity。
+				typedef struct activity{
+					int name,start,end,dur;
+				}activity;
+		head_event route[MAX_E]:
+			用Adjacency list紀錄從該event的點出發的點和離開的點。
+				typedef struct head_event{
+					e_ptr from_here;
+					e_ptr to_here;
+				}head_event;
+				typedef struct event *e_ptr;
+				typedef struct event{
+					int name,dur,co_event;
+					e_ptr link;
+				}event;
+		head_ptr[MAX_E][2]:
+			紀錄head_event的linklist末端。
+			[0]紀錄from_here;[1]紀錄to_here。
+	運算順序：
+		Step1:紀錄輸入內容至all_activity
+		Step2:根據all_activity初始化route
+		Step3:根據route找出ee和le
+		Step4:根據ee和le推算e、l、s、c
+		Step5:印出答案

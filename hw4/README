@@ -1,0 +1,51 @@
+***Programming Homework 4***
+***F74056108***
+*檔名:
+	hw4.c
+*編譯方式:
+	gcc -o hw4 hw4.c
+*使用方式:
+	./hw4
+*程式架構:
+
+	/*創建double link list*/
+	初始化pointer和第一個node，並用head pointer指著首端
+	↓
+	for i=2:20
+		next pointer malloc出新node，並初始化data
+		↓
+		將next(data=i)和pre(data=i-2)位置的XOR結果儲存在now->link(data=i-1);
+		↓
+		將now位置存在temp後往前移到next的位置
+		↓
+		將pre位置往前移到temp的位置
+	end
+	↓
+	設置最後一個位置的link，並用tail pointer指著尾端
+	
+	/*由左往右印*/
+	將now pointer指向head指向的位置(首端)
+	pre指向NULL
+	↓
+	for i=1:20
+		印出now->data
+		↓
+		將now存在temp後，移向(now->link)XOR(pre)
+		↓
+		將pre位置往前移到temp的位置
+	end
+	
+	/*由右往左印*/
+	將now pointer指向tail指向的位置(尾端)
+	pre指向NULL
+	↓
+	for i=1:20
+		印出now->data
+		↓
+		將now存在temp後，移向(now->link)XOR(pre)
+		↓
+		將pre位置往前移到temp的位置
+	end
+	
+	
+	
